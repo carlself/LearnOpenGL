@@ -19,6 +19,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloTriangle_Exercise2", "
 		{40133DE4-0CDB-4D57-91E3-8E5D5F5CE603} = {40133DE4-0CDB-4D57-91E3-8E5D5F5CE603}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloTriangle_Excercise3", "Excercise\HelloTriangle_Excercise3\HelloTriangle_Excercise3.vcxproj", "{6151A3EE-2127-4C54-86C3-B38C05633B81}"
+	ProjectSection(ProjectDependencies) = postProject
+		{40133DE4-0CDB-4D57-91E3-8E5D5F5CE603} = {40133DE4-0CDB-4D57-91E3-8E5D5F5CE603}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -59,6 +64,14 @@ Global
 		{AB334AF4-30EA-475B-8C63-EE4DE72EAA89}.Release|x64.Build.0 = Release|x64
 		{AB334AF4-30EA-475B-8C63-EE4DE72EAA89}.Release|x86.ActiveCfg = Release|Win32
 		{AB334AF4-30EA-475B-8C63-EE4DE72EAA89}.Release|x86.Build.0 = Release|Win32
+		{6151A3EE-2127-4C54-86C3-B38C05633B81}.Debug|x64.ActiveCfg = Debug|x64
+		{6151A3EE-2127-4C54-86C3-B38C05633B81}.Debug|x64.Build.0 = Debug|x64
+		{6151A3EE-2127-4C54-86C3-B38C05633B81}.Debug|x86.ActiveCfg = Debug|Win32
+		{6151A3EE-2127-4C54-86C3-B38C05633B81}.Debug|x86.Build.0 = Debug|Win32
+		{6151A3EE-2127-4C54-86C3-B38C05633B81}.Release|x64.ActiveCfg = Release|x64
+		{6151A3EE-2127-4C54-86C3-B38C05633B81}.Release|x64.Build.0 = Release|x64
+		{6151A3EE-2127-4C54-86C3-B38C05633B81}.Release|x86.ActiveCfg = Release|Win32
+		{6151A3EE-2127-4C54-86C3-B38C05633B81}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +79,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{FB7EDDF6-C90F-47BD-A592-CF81BA2C1ECD} = {3F386CB7-2F3A-44CC-80D1-2189B99F43A6}
 		{AB334AF4-30EA-475B-8C63-EE4DE72EAA89} = {3F386CB7-2F3A-44CC-80D1-2189B99F43A6}
+		{6151A3EE-2127-4C54-86C3-B38C05633B81} = {3F386CB7-2F3A-44CC-80D1-2189B99F43A6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1DC0FCF7-08A7-4D46-AD70-63B216B3DAF3}
