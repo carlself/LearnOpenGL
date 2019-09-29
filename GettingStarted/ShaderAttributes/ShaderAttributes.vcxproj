@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{F745C851-7852-49BC-B7EC-4642D6F78486}</ProjectGuid>
+    <ProjectGuid>{C61CD99F-A54D-41DB-AFB5-A7649D218181}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Shaders</RootNamespace>
+    <RootNamespace>ShaderAttributes</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -161,10 +161,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Shaders.cpp" />
+    <ClCompile Include="ShaderAttributes.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.vcxproj">
+    <ProjectReference Include="..\..\Common\Common.vcxproj">
       <Project>{40133de4-0cdb-4d57-91e3-8e5d5f5ce603}</Project>
     </ProjectReference>
   </ItemGroup>
