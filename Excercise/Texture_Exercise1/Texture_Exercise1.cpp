@@ -1,4 +1,4 @@
-// Textures.cpp : This file contains the 'main' function. Program execution begins and ends there.
+﻿// Textures.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include "pch.h"
@@ -74,7 +74,7 @@ int main()
 	unsigned int EBO;
 	glGenBuffers(1, &EBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices),indices, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// 4. set vertex attribute pointers
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)0);
@@ -99,7 +99,7 @@ int main()
 	stbi_set_flip_vertically_on_load(true);
 	int width, height, nrChannels;
 	unsigned char *data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
-	if(data)
+	if (data)
 	{
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
