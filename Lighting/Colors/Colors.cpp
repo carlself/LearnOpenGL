@@ -17,7 +17,6 @@ float lastX = 400.0f;
 float lastY = 300.0f;
 
 
-
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -90,51 +89,51 @@ int main()
 	glfwSetScrollCallback(window, scroll_callback);
 
 	float vertices[] = {
-	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+	-0.5f, -0.5f, -0.5f, 
+	 0.5f, -0.5f, -0.5f, 
+	 0.5f,  0.5f, -0.5f, 
+	 0.5f,  0.5f, -0.5f,
+	-0.5f,  0.5f, -0.5f,
+	-0.5f, -0.5f, -0.5f,
 
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+	-0.5f, -0.5f,  0.5f,
+	 0.5f, -0.5f,  0.5f, 
+	 0.5f,  0.5f,  0.5f,
+	 0.5f,  0.5f,  0.5f,
+	-0.5f,  0.5f,  0.5f,
+	-0.5f, -0.5f,  0.5f,
 
-	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+	-0.5f,  0.5f,  0.5f, 
+	-0.5f,  0.5f, -0.5f, 
+	-0.5f, -0.5f, -0.5f,
+	-0.5f, -0.5f, -0.5f,
+	-0.5f, -0.5f,  0.5f,
+	-0.5f,  0.5f,  0.5f, 
 
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f, 
+	 0.5f,  0.5f, -0.5f, 
+	 0.5f, -0.5f, -0.5f, 
+	 0.5f, -0.5f, -0.5f,
+	 0.5f, -0.5f,  0.5f,
+	 0.5f,  0.5f,  0.5f,
 
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f, 
+	 0.5f, -0.5f, -0.5f,  
+	 0.5f, -0.5f,  0.5f, 
+	 0.5f, -0.5f,  0.5f,  
+	-0.5f, -0.5f,  0.5f,  
+	-0.5f, -0.5f, -0.5f, 
 
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+	-0.5f,  0.5f, -0.5f,
+	 0.5f,  0.5f, -0.5f, 
+	 0.5f,  0.5f,  0.5f, 
+	 0.5f,  0.5f,  0.5f,
+	-0.5f,  0.5f,  0.5f, 
+	-0.5f,  0.5f, -0.5f,  
 	};
 
 
-
+	// object
 	Shader shader("object.vs", "object.fs");
 
 	// 1. bind vertex array object
@@ -148,9 +147,24 @@ int main()
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),(void *) 0);
+	glEnableVertexAttribArray(0);
+
+	// light
+	Shader lightShader("object.vs", "light.fs");
+
+	unsigned int lightVAO;
+	glGenVertexArrays(1, &lightVAO);
+	glBindVertexArray(lightVAO);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+	glEnableVertexAttribArray(0);
+
+	
 	lastTime = glfwGetTime();
 	glfwSetCursorPos(window, lastX, lastY);
 
+	glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -171,20 +185,29 @@ int main()
 		shader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
 
 		glm::mat4 view = camera.GetViewMatrix();
-		glm::mat4 projection = glm::mat4(1.0f);
-
-		projection = glm::perspective(glm::radians(camera.Zoom), 800.0f / 600.0f, 0.1f, 100.0f);
-
+		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), 800.0f / 600.0f, 0.1f, 100.0f);
+		glm::mat4 model = glm::mat4(1.0f);
 
 		shader.setMat4("view", view);
 		shader.setMat4("projection", projection);
+		shader.setMat4("model", model);
 
 		glBindVertexArray(VAO);
-		glm::mat4 model = glm::mat4(1.0f);
-		shader.setMat4("model", model);
+
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		lightShader.use();
+		projection = glm::perspective(glm::radians(camera.Zoom), 800.0f / 600.0f, 0.1f, 100.0f);
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, lightPos);
+		model = glm::scale(model, glm::vec3(0.2f));
+		shader.setMat4("view", view);
+		shader.setMat4("projection", projection);
+		shader.setMat4("model", model);
+
+		glBindVertexArray(lightVAO);
+
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
