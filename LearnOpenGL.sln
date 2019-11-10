@@ -74,6 +74,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lighting", "Lighting", "{82
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Colors", "Lighting\Colors\Colors.vcxproj", "{2F5EBFE3-23AB-49BE-AAA8-714EAB4EFFED}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BasicLighting", "Lighting\BasicLighting\BasicLighting.vcxproj", "{9A789B48-D6D4-4A46-9C96-138964FE4745}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -306,6 +308,14 @@ Global
 		{2F5EBFE3-23AB-49BE-AAA8-714EAB4EFFED}.Release|x64.Build.0 = Release|x64
 		{2F5EBFE3-23AB-49BE-AAA8-714EAB4EFFED}.Release|x86.ActiveCfg = Release|Win32
 		{2F5EBFE3-23AB-49BE-AAA8-714EAB4EFFED}.Release|x86.Build.0 = Release|Win32
+		{9A789B48-D6D4-4A46-9C96-138964FE4745}.Debug|x64.ActiveCfg = Debug|x64
+		{9A789B48-D6D4-4A46-9C96-138964FE4745}.Debug|x64.Build.0 = Debug|x64
+		{9A789B48-D6D4-4A46-9C96-138964FE4745}.Debug|x86.ActiveCfg = Debug|Win32
+		{9A789B48-D6D4-4A46-9C96-138964FE4745}.Debug|x86.Build.0 = Debug|Win32
+		{9A789B48-D6D4-4A46-9C96-138964FE4745}.Release|x64.ActiveCfg = Release|x64
+		{9A789B48-D6D4-4A46-9C96-138964FE4745}.Release|x64.Build.0 = Release|x64
+		{9A789B48-D6D4-4A46-9C96-138964FE4745}.Release|x86.ActiveCfg = Release|Win32
+		{9A789B48-D6D4-4A46-9C96-138964FE4745}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -338,6 +348,7 @@ Global
 		{2B0E3A45-B30E-44E3-A9A1-AAF81EDA5D4B} = {3F386CB7-2F3A-44CC-80D1-2189B99F43A6}
 		{8F1C4E19-0078-4A60-9C81-1AC064922F81} = {3F386CB7-2F3A-44CC-80D1-2189B99F43A6}
 		{2F5EBFE3-23AB-49BE-AAA8-714EAB4EFFED} = {82D9BE73-17FD-455A-91CF-DD9B4B137ACE}
+		{9A789B48-D6D4-4A46-9C96-138964FE4745} = {82D9BE73-17FD-455A-91CF-DD9B4B137ACE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1DC0FCF7-08A7-4D46-AD70-63B216B3DAF3}
