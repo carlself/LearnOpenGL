@@ -34,7 +34,7 @@ struct PointLight {
 };
 
 #define NR_POINT_LIGHTS 4
-PointLight pointLights[NR_POINT_LIGHTS];
+uniform PointLight pointLights[NR_POINT_LIGHTS];
 
 struct SpotLight {
 	vec3 position;
@@ -75,7 +75,7 @@ void main()
 		outpupt += CalcPointLight(pointLights[i], normal, FragPos, viewDir);
 	}
 	
-	// outpupt += CalcSpotLight(spotLight, normal, FragPos, viewDir);
+	outpupt += CalcSpotLight(spotLight, normal, FragPos, viewDir);
 
 	FragColor = vec4(outpupt, 1.0);
 }

@@ -266,7 +266,7 @@ int main()
 		shader.setVec3("viewPos", camera.Position);
 
 		// directional light
-		shader.setVec3("dirLight.direction", -1.0, 0.5f, 0.1f);
+		shader.setVec3("dirLight.direction", -0.5, -0.5f, -0.5f);
 		shader.setVec3("dirLight.ambient", 0.1f, 0.1f, 0.1f);
 		shader.setVec3("dirLight.diffuse", 0.5f, 0.5f, 0.5f);
 		shader.setVec3("dirLight.specular", glm::vec3(1.0f));
