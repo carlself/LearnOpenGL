@@ -9,6 +9,7 @@ struct Material
 
 uniform Material material;
 
+out vec4 FragColor;
 void main()
 {
     vec3 texColor = vec3(texture(material.diffuse_texture1, TexCoords));

@@ -90,11 +90,77 @@ int main()
 	glfwSetCursorPosCallback(window, mouse_callback);
 	glfwSetScrollCallback(window, scroll_callback);
 
-
 	// object
 	Shader shader("model_loading.vs", "model_loading.fs");
 
 	Model ourModel(FileSystem::GetPath("resources/objects/nanosuit/nanosuit.obj"));
+
+	// light
+	Shader lightShader("light.vs", "light.fs");
+
+	float vertices[] = {
+		-0.5f, -0.5f, -0.5f,
+		 0.5f, -0.5f, -0.5f, 
+		 0.5f,  0.5f, -0.5f, 
+		 0.5f,  0.5f, -0.5f, 
+		-0.5f,  0.5f, -0.5f, 
+		-0.5f, -0.5f, -0.5f, 
+
+		-0.5f, -0.5f,  0.5f,
+		 0.5f, -0.5f,  0.5f,
+		 0.5f,  0.5f,  0.5f, 
+		 0.5f,  0.5f,  0.5f,  
+		-0.5f,  0.5f,  0.5f,
+		-0.5f, -0.5f,  0.5f, 
+
+		-0.5f,  0.5f,  0.5f, 
+		-0.5f,  0.5f, -0.5f, 
+		-0.5f, -0.5f, -0.5f,
+		-0.5f, -0.5f, -0.5f, 
+		-0.5f, -0.5f,  0.5f,
+		-0.5f,  0.5f,  0.5f,
+
+		 0.5f,  0.5f,  0.5f,
+		 0.5f,  0.5f, -0.5f,
+		 0.5f, -0.5f, -0.5f,
+		 0.5f, -0.5f, -0.5f,
+		 0.5f, -0.5f,  0.5f,
+		 0.5f,  0.5f,  0.5f,
+
+		-0.5f, -0.5f, -0.5f, 
+		 0.5f, -0.5f, -0.5f, 
+		 0.5f, -0.5f,  0.5f,
+		 0.5f, -0.5f,  0.5f,
+		-0.5f, -0.5f,  0.5f, 
+		-0.5f, -0.5f, -0.5f,
+
+		-0.5f,  0.5f, -0.5f,
+		 0.5f,  0.5f, -0.5f,
+		 0.5f,  0.5f,  0.5f,
+		 0.5f,  0.5f,  0.5f,
+		-0.5f,  0.5f,  0.5f,
+		-0.5f,  0.5f, -0.5f
+	};
+
+	unsigned int lightVAO;
+	unsigned int VBO;
+
+	glGenVertexArrays(1, &lightVAO);
+	glGenBuffers(1, &VBO);
+
+	glBindVertexArray(lightVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+	glEnableVertexAttribArray(0);
+
+	glm::vec3 pointLightPositions[] = {
+		glm::vec3(0.7f,  0.2f,  2.0f),
+		glm::vec3(2.3f, -3.3f, -4.0f),
+	};
+
 	lastTime = glfwGetTime();
 	glfwSetCursorPos(window, lastX, lastY);
 
@@ -110,7 +176,7 @@ int main()
 
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 		shader.use();
 
@@ -125,7 +191,37 @@ int main()
 		model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));
 		shader.setMat4("model", model);
 
+		shader.setVec3("viewPos", camera.Position);
+		// point lights
+		for (int i = 0; i < 2; i++)
+		{
+			string number = to_string(i);
+			shader.setVec3("pointLights[" + number + "].position", pointLightPositions[i]);
+			shader.setFloat("pointLights[" + number + "].constant", 1.0f);
+			shader.setFloat("pointLights[" + number + "].linear", 0.09f);
+			shader.setFloat("pointLights[" + number + "].quadratic", 0.032f);
+
+			shader.setVec3("pointLights[" + number + "].ambient", 0.1f, 0.1f, 0.1f);
+			shader.setVec3("pointLights[" + number + "].diffuse", 0.5f, 0.5f, 0.5f);
+			shader.setVec3("pointLights[" + number + "].specular", glm::vec3(1.0f));
+		}
+
 		ourModel.Draw(shader);
+
+		lightShader.use();
+		lightShader.setMat4("projection", projection);
+		lightShader.setMat4("view", view);
+
+		glBindVertexArray(lightVAO);
+		for (int i = 0; i < 2; i++)
+		{
+			glm::mat4 model = glm::mat4(1.0f);
+			model = glm::translate(model, pointLightPositions[i]);
+			model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));
+			lightShader.setMat4("model", model);
+
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

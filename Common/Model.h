@@ -17,7 +17,7 @@ using namespace std;
 class Model
 {
 public:
-	Model(const char* path)
+	Model(const string& path)
 	{
 		loadModel(path);
 	}
