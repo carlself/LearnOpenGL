@@ -2,8 +2,6 @@
 
 in vec2 TexCoords;
 
-out vec4 FragColor;
-
 struct Material
 {
     sampler2D diffuse_texture1;
