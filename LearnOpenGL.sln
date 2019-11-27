@@ -120,6 +120,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DepthTesting", "AdvancedOpe
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DepthTesting_VisulizingDepthBuffer", "AdvancedOpenGL\DepthTesting_VisulizingDepthBuffer\DepthTesting_VisulizingDepthBuffer.vcxproj", "{731A2D5F-2F3C-4AB0-B52E-F89FC1B06D27}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StencilTesting", "AdvancedOpenGL\StencilTesting\StencilTesting.vcxproj", "{43A86132-2862-4FB9-A20A-EB314AE90883}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -620,6 +622,16 @@ Global
 		{731A2D5F-2F3C-4AB0-B52E-F89FC1B06D27}.Release|x64.Build.0 = Release|x64
 		{731A2D5F-2F3C-4AB0-B52E-F89FC1B06D27}.Release|x86.ActiveCfg = Release|Win32
 		{731A2D5F-2F3C-4AB0-B52E-F89FC1B06D27}.Release|x86.Build.0 = Release|Win32
+		{43A86132-2862-4FB9-A20A-EB314AE90883}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{43A86132-2862-4FB9-A20A-EB314AE90883}.Debug|x64.ActiveCfg = Debug|x64
+		{43A86132-2862-4FB9-A20A-EB314AE90883}.Debug|x64.Build.0 = Debug|x64
+		{43A86132-2862-4FB9-A20A-EB314AE90883}.Debug|x86.ActiveCfg = Debug|Win32
+		{43A86132-2862-4FB9-A20A-EB314AE90883}.Debug|x86.Build.0 = Debug|Win32
+		{43A86132-2862-4FB9-A20A-EB314AE90883}.Release|Any CPU.ActiveCfg = Release|Win32
+		{43A86132-2862-4FB9-A20A-EB314AE90883}.Release|x64.ActiveCfg = Release|x64
+		{43A86132-2862-4FB9-A20A-EB314AE90883}.Release|x64.Build.0 = Release|x64
+		{43A86132-2862-4FB9-A20A-EB314AE90883}.Release|x86.ActiveCfg = Release|Win32
+		{43A86132-2862-4FB9-A20A-EB314AE90883}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -673,6 +685,7 @@ Global
 		{B3D6EE11-2683-4684-A80A-2A4D6BC20781} = {FFA7BE6E-2999-4569-9E38-4088AFB06C1D}
 		{9ADAD551-4CDB-428E-86B6-5432E0B38A41} = {F4B3596C-F8BE-4E46-9850-E3F6DCE8433B}
 		{731A2D5F-2F3C-4AB0-B52E-F89FC1B06D27} = {F4B3596C-F8BE-4E46-9850-E3F6DCE8433B}
+		{43A86132-2862-4FB9-A20A-EB314AE90883} = {F4B3596C-F8BE-4E46-9850-E3F6DCE8433B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1DC0FCF7-08A7-4D46-AD70-63B216B3DAF3}
