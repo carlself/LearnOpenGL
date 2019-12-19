@@ -143,6 +143,7 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cubemap_Reflection", "AdvancedOpenGL\Cubemap_Reflection\Cubemap_Reflection.vcxproj", "{04351EDD-C636-4988-8DC3-C738BC941BEC}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cubemap_Refraction", "AdvancedOpenGL\Cubemap_Refraction\Cubemap_Refraction.vcxproj", "{B7560C91-AC25-48A3-A8D3-5F7E2283C773}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AdvancedGLSL_UBO", "AdvancedOpenGL\AdvancedGLSL_UBO\AdvancedGLSL_UBO.vcxproj", "{0C304EB0-12D9-4C52-BC4C-62FD18465E8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -764,6 +765,16 @@ Global
 		{B7560C91-AC25-48A3-A8D3-5F7E2283C773}.Release|x64.Build.0 = Release|x64
 		{B7560C91-AC25-48A3-A8D3-5F7E2283C773}.Release|x86.ActiveCfg = Release|Win32
 		{B7560C91-AC25-48A3-A8D3-5F7E2283C773}.Release|x86.Build.0 = Release|Win32
+		{0C304EB0-12D9-4C52-BC4C-62FD18465E8C}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{0C304EB0-12D9-4C52-BC4C-62FD18465E8C}.Debug|x64.ActiveCfg = Debug|x64
+		{0C304EB0-12D9-4C52-BC4C-62FD18465E8C}.Debug|x64.Build.0 = Debug|x64
+		{0C304EB0-12D9-4C52-BC4C-62FD18465E8C}.Debug|x86.ActiveCfg = Debug|Win32
+		{0C304EB0-12D9-4C52-BC4C-62FD18465E8C}.Debug|x86.Build.0 = Debug|Win32
+		{0C304EB0-12D9-4C52-BC4C-62FD18465E8C}.Release|Any CPU.ActiveCfg = Release|Win32
+		{0C304EB0-12D9-4C52-BC4C-62FD18465E8C}.Release|x64.ActiveCfg = Release|x64
+		{0C304EB0-12D9-4C52-BC4C-62FD18465E8C}.Release|x64.Build.0 = Release|x64
+		{0C304EB0-12D9-4C52-BC4C-62FD18465E8C}.Release|x86.ActiveCfg = Release|Win32
+		{0C304EB0-12D9-4C52-BC4C-62FD18465E8C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -829,6 +840,7 @@ Global
 		{182379C2-04F7-4C0D-A02F-F978F897111D} = {F4B3596C-F8BE-4E46-9850-E3F6DCE8433B}
 		{04351EDD-C636-4988-8DC3-C738BC941BEC} = {F4B3596C-F8BE-4E46-9850-E3F6DCE8433B}
 		{B7560C91-AC25-48A3-A8D3-5F7E2283C773} = {F4B3596C-F8BE-4E46-9850-E3F6DCE8433B}
+		{0C304EB0-12D9-4C52-BC4C-62FD18465E8C} = {F4B3596C-F8BE-4E46-9850-E3F6DCE8433B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1DC0FCF7-08A7-4D46-AD70-63B216B3DAF3}
