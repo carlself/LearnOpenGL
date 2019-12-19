@@ -1,4 +1,4 @@
-﻿// Textures.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// Textures.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include "pch.h"
@@ -153,7 +153,7 @@ int main()
 	glfwSetCursorPosCallback(window, mouse_callback);
 	glfwSetScrollCallback(window, scroll_callback);
 
-	
+
 
 	/*
 		Remember: to specify vertices in a counter-clockwise winding order you need to visualize the triangle
@@ -309,7 +309,9 @@ int main()
 	skyboxShader.setInt("skybox", 0);
 
 	glEnable(GL_DEPTH_TEST);
-
+	glDepthMask(GL_TRUE);
+	//glDepthFunc(GL_LESS);
+	glDepthFunc(GL_LEQUAL);
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -322,26 +324,11 @@ int main()
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
-
-		
 		glm::mat4 model = glm::mat4(1.0f);
 		glm::mat4 view = camera.GetViewMatrix();
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), 800.0f / 600.0f, 0.1f, 100.0f);
 
-		// draw skybox
-		glDepthMask(GL_FALSE);
-		skyboxShader.use();
-		skyboxShader.setMat4("view", glm::mat4(glm::mat3(view)));
-		//skyboxShader.setMat4("view", view);
-		skyboxShader.setMat4("projection", projection);
-		glBindVertexArray(skyboxVAO);
-		glBindTexture(GL_TEXTURE_CUBE_MAP, skyboxTexture);
-		glDrawArrays(GL_TRIANGLES, 0, 36);
-
 		// draw cube
-		glDepthMask(GL_TRUE);
-
 		shader.use();
 		shader.setMat4("view", view);
 		shader.setMat4("projection", projection);
@@ -352,6 +339,14 @@ int main()
 		glBindTexture(GL_TEXTURE_2D, cubeTexture);
 		model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
 		shader.setMat4("model", model);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		// draw skybox
+		skyboxShader.use();
+		skyboxShader.setMat4("view", glm::mat4(glm::mat3(view)));
+		skyboxShader.setMat4("projection", projection);
+		glBindVertexArray(skyboxVAO);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, skyboxTexture);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		glfwSwapBuffers(window);
