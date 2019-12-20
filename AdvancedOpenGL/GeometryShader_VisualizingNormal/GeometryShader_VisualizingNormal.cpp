@@ -92,7 +92,8 @@ int main()
 
 
 	// object
-	Shader shader("model_loading.vs", "model_loading.fs");
+	Shader shader("model.vs", "model.fs");
+	Shader displayNormalShader("display_normal.vs", "display_normal.fs", "display_normal.gs");
 
 	Model ourModel(FileSystem::GetPath("resources/objects/nanosuit/nanosuit.obj"));
 	lastTime = glfwGetTime();
@@ -116,7 +117,6 @@ int main()
 
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), 800.0f / 600.0f, 0.1f, 100.0f);
 		glm::mat4 view = camera.GetViewMatrix();
-
 		shader.setMat4("projection", projection);
 		shader.setMat4("view", view);
 
@@ -126,6 +126,12 @@ int main()
 		shader.setMat4("model", model);
 
 		ourModel.Draw(shader);
+
+		displayNormalShader.use();
+		displayNormalShader.setMat4("projection", projection);
+		displayNormalShader.setMat4("view", view);
+		displayNormalShader.setMat4("model", model);
+		ourModel.Draw(displayNormalShader);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
