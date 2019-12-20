@@ -148,6 +148,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AdvancedGLSL_UBO", "Advance
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GeometryShader_House", "AdvancedOpenGL\GeometryShader_House\GeometryShader_House.vcxproj", "{48B45A79-B5B9-49D4-87D1-44E44EDA2C29}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GeometryShader_Exploding", "AdvancedOpenGL\GeometryShader_Exploding\GeometryShader_Exploding.vcxproj", "{039AD189-0E49-45FD-80D1-3D640484B745}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -788,6 +790,16 @@ Global
 		{48B45A79-B5B9-49D4-87D1-44E44EDA2C29}.Release|x64.Build.0 = Release|x64
 		{48B45A79-B5B9-49D4-87D1-44E44EDA2C29}.Release|x86.ActiveCfg = Release|Win32
 		{48B45A79-B5B9-49D4-87D1-44E44EDA2C29}.Release|x86.Build.0 = Release|Win32
+		{039AD189-0E49-45FD-80D1-3D640484B745}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{039AD189-0E49-45FD-80D1-3D640484B745}.Debug|x64.ActiveCfg = Debug|x64
+		{039AD189-0E49-45FD-80D1-3D640484B745}.Debug|x64.Build.0 = Debug|x64
+		{039AD189-0E49-45FD-80D1-3D640484B745}.Debug|x86.ActiveCfg = Debug|Win32
+		{039AD189-0E49-45FD-80D1-3D640484B745}.Debug|x86.Build.0 = Debug|Win32
+		{039AD189-0E49-45FD-80D1-3D640484B745}.Release|Any CPU.ActiveCfg = Release|Win32
+		{039AD189-0E49-45FD-80D1-3D640484B745}.Release|x64.ActiveCfg = Release|x64
+		{039AD189-0E49-45FD-80D1-3D640484B745}.Release|x64.Build.0 = Release|x64
+		{039AD189-0E49-45FD-80D1-3D640484B745}.Release|x86.ActiveCfg = Release|Win32
+		{039AD189-0E49-45FD-80D1-3D640484B745}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -855,6 +867,7 @@ Global
 		{B7560C91-AC25-48A3-A8D3-5F7E2283C773} = {F4B3596C-F8BE-4E46-9850-E3F6DCE8433B}
 		{0C304EB0-12D9-4C52-BC4C-62FD18465E8C} = {F4B3596C-F8BE-4E46-9850-E3F6DCE8433B}
 		{48B45A79-B5B9-49D4-87D1-44E44EDA2C29} = {F4B3596C-F8BE-4E46-9850-E3F6DCE8433B}
+		{039AD189-0E49-45FD-80D1-3D640484B745} = {F4B3596C-F8BE-4E46-9850-E3F6DCE8433B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1DC0FCF7-08A7-4D46-AD70-63B216B3DAF3}

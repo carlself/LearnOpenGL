@@ -1,14 +1,17 @@
-// Textures.cpp : This file contains the 'main' function. Program execution begins and ends there.
+﻿// Textures.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include "pch.h"
+#include <Model.h>
+#include <Camera.h>
+#include <FileSystem.h>
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <Shader.h>
-#include <FileSystem.h>
-#include <Camera.h>
-#define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
+
+
+
 
 float deltaTime = 0.0f;
 float lastTime = 0.0f;
@@ -58,43 +61,6 @@ void scroll_callback(GLFWwindow *window, double xoffset, double yoffset)
 	camera.ProcessMouseScroll(yoffset);
 }
 
-unsigned int loadTexture(const string &path)
-{
-	unsigned int textureId;
-	glGenTextures(1, &textureId);
-
-	int width, height, nrComponents;
-	unsigned char *data = stbi_load(FileSystem::GetPath(path).c_str(), &width, &height, &nrComponents, 0);
-	if (data)
-	{
-		GLenum format;
-		if (nrComponents == 1)
-			format = GL_RED;
-		else if (nrComponents == 3)
-			format = GL_RGB;
-		else if (nrComponents == 4)
-			format = GL_RGBA;
-
-		glBindTexture(GL_TEXTURE_2D, textureId);
-		glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
-
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-		stbi_image_free(data);
-	}
-	else
-	{
-		std::cout << "Texture failed to load at path: " << path << std::endl;
-		stbi_image_free(data);
-	}
-
-	return textureId;
-}
 
 int main()
 {
@@ -124,67 +90,48 @@ int main()
 	glfwSetCursorPosCallback(window, mouse_callback);
 	glfwSetScrollCallback(window, scroll_callback);
 
-	float points[] = {
-		-0.5f,  0.5f, 1.0f, 0.0f, 0.0f, // top-left
-		 0.5f,  0.5f, 0.0f, 1.0f, 0.0f, // top-right
-		 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, // bottom-right
-		-0.5f, -0.5f, 1.0f, 1.0f, 0.0f  // bottom-left
-	};
 
-	Shader shader("house.vs", "house.fs", "house.gs");
+	// object
+	Shader shader("exploding.vs", "exploding.fs", "exploding.gs");
 
-
-	//  VAO
-	unsigned int vao, vbo;
-	glGenVertexArrays(1, &vao);
-	glGenBuffers(1, &vbo);
-
-	glBindVertexArray(vao);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-
-	glBufferData(GL_ARRAY_BUFFER, sizeof(points), &points, GL_STATIC_DRAW);
-
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
-	
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
-	
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-
-	//glEnable(GL_DEPTH_TEST);
-	//glDepthFunc(GL_LESS);
-	//glEnable(GL_BLEND);
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_CULL_FACE);
-	glFrontFace(GL_CCW);
-
-	//glDepthFunc(GL_ALWAYS); 
+	Model ourModel(FileSystem::GetPath("resources/objects/nanosuit/nanosuit.obj"));
+	lastTime = glfwGetTime();
+	glfwSetCursorPos(window, lastX, lastY);
 
 	while (!glfwWindowShouldClose(window))
 	{
-		//float currentTime = glfwGetTime();
-		//deltaTime = currentTime - lastTime;
-		//lastTime = currentTime;
+		float currentTime = glfwGetTime();
+		deltaTime = currentTime - lastTime;
+		lastTime = currentTime;
 
-		//processInput(window);
+		processInput(window);
+
+		glEnable(GL_DEPTH_TEST);
 
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 		shader.use();
-		glBindVertexArray(vao);
-		glDrawArrays(GL_POINTS, 0, 4);
 
+		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), 800.0f / 600.0f, 0.1f, 100.0f);
+		glm::mat4 view = camera.GetViewMatrix();
+		
+		shader.setFloat("time", currentTime);
+		shader.setMat4("projection", projection);
+		shader.setMat4("view", view);
+
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));
+		shader.setMat4("model", model);
+
+		ourModel.Draw(shader);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
-
-	glDeleteVertexArrays(1, &vao);
-	glDeleteBuffers(1, &vbo);
+	//glDeleteBuffers(1, &EBO);
 
 	glfwTerminate();
 	return 0;
