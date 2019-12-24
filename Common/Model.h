@@ -30,8 +30,8 @@ public:
 		}
 	}
 
-private:
 	vector<Mesh> meshes;
+private:
 	map<string, Texture> textureLoaded;
 	string directory;
 
