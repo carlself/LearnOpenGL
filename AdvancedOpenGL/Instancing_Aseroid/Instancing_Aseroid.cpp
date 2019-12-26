@@ -8,8 +8,8 @@
 #include <FileSystem.h>
 #include <Camera.h>
 #include <Model.h>
-#define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
+//#define STB_IMAGE_IMPLEMENTATION
+//#include <stb_image.h>
 
 float deltaTime = 0.0f;
 float lastTime = 0.0f;
@@ -206,24 +206,38 @@ int main()
 
 	while (!glfwWindowShouldClose(window))
 	{
-		//float currentTime = glfwGetTime();
-		//deltaTime = currentTime - lastTime;
-		//lastTime = currentTime;
+		float currentTime = glfwGetTime();
+		deltaTime = currentTime - lastTime;
+		lastTime = currentTime;
 
-		//processInput(window);
+		processInput(window);
 
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		glm::mat4 view = camera.GetViewMatrix();
+		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), 800.0f / 600.0f, 0.1f, 100.0f);
+
+		planetShader.use();
+		planetShader.setMat4("projection", projection);
+		planetShader.setMat4("view", view);
+
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, -3.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+		planetShader.setMat4("model", model);
+
 		planet.Draw(planetShader);
 
-		rockShader.use();
-		for (int i = 0; i < rock.meshes.size(); i++)
-		{
-			glBindVertexArray(rock.meshes[i].VAO);
+		//rockShader.use();
+		//rockShader.setMat4("projection", projection);
+		//rockShader.setMat4("view", view);
+		//for (int i = 0; i < rock.meshes.size(); i++)
+		//{
+		//	glBindVertexArray(rock.meshes[i].VAO);
 
-			glDrawElementsInstanced(GL_TRIANGLES, rock.meshes[i].indices.size(), GL_UNSIGNED_INT, 0, amount);
-		}
+		//	glDrawElementsInstanced(GL_TRIANGLES, rock.meshes[i].indices.size(), GL_UNSIGNED_INT, 0, amount);
+		//}
 		//shader.use();
 		//glBindVertexArray(vao);
 		//glDrawArraysInstanced(GL_TRIANGLES, 0, 6, 100);
@@ -234,7 +248,7 @@ int main()
 		glfwPollEvents();
 	}
 
-	glDeleteVertexArrays(1, &vao);
+	//glDeleteVertexArrays(1, &vao);
 	glDeleteBuffers(1, &vbo);
 
 	glfwTerminate();

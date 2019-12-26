@@ -62,7 +62,7 @@ public:
 				number = to_string(specularNr++);
 			}
 
-			shader.setInt("material." + name + number, i);
+			shader.setInt("	." + name + number, i);
 			glBindTexture(GL_TEXTURE_2D, textures[i].Id);
 		}
 		glActiveTexture(GL_TEXTURE0);
