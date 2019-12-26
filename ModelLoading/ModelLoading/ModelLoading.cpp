@@ -93,7 +93,7 @@ int main()
 
 	// object
 	Shader shader("model_loading.vs", "model_loading.fs");
-
+	//
 	Model ourModel(FileSystem::GetPath("resources/objects/nanosuit/nanosuit.obj"));
 	lastTime = glfwGetTime();
 	glfwSetCursorPos(window, lastX, lastY);

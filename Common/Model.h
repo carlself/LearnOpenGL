@@ -31,8 +31,8 @@ public:
 	}
 
 	vector<Mesh> meshes;
+	vector<Texture> textureLoaded;
 private:
-	map<string, Texture> textureLoaded;
 	string directory;
 
 	void loadModel(string path)
@@ -128,18 +128,26 @@ private:
 			aiString str;
 			mat->GetTexture(type, i, &str);
 
-			std::map<string, Texture>::iterator it = textureLoaded.find(str.C_Str());
-			if (it != textureLoaded.end())
+			bool skip = false;
+			for (auto tex : textureLoaded)
 			{
-				textures.push_back(it->second);
-				break;
+				if (tex.Path == str.C_Str())
+				{
+					textures.push_back(tex);
+					skip = true;
+					break;
+				}
 			}
 
-			Texture texture;
-			texture.Id = TextureFromFile(str.C_Str(), directory);
-			texture.Type = typeName;
-			texture.Path = str.C_Str();
-			textures.push_back(texture);
+			if (!skip)
+			{
+				Texture texture;
+				texture.Id = TextureFromFile(str.C_Str(), directory);
+				texture.Type = typeName;
+				texture.Path = str.C_Str();
+				textures.push_back(texture);
+				textureLoaded.push_back(texture);
+			}
 		}
 
 		return textures;

@@ -59,44 +59,6 @@ void scroll_callback(GLFWwindow *window, double xoffset, double yoffset)
 	camera.ProcessMouseScroll(yoffset);
 }
 
-unsigned int loadTexture(const string &path)
-{
-	unsigned int textureId;
-	glGenTextures(1, &textureId);
-
-	int width, height, nrComponents;
-	unsigned char *data = stbi_load(FileSystem::GetPath(path).c_str(), &width, &height, &nrComponents, 0);
-	if (data)
-	{
-		GLenum format;
-		if (nrComponents == 1)
-			format = GL_RED;
-		else if (nrComponents == 3)
-			format = GL_RGB;
-		else if (nrComponents == 4)
-			format = GL_RGBA;
-
-		glBindTexture(GL_TEXTURE_2D, textureId);
-		glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
-
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-		stbi_image_free(data);
-	}
-	else
-	{
-		std::cout << "Texture failed to load at path: " << path << std::endl;
-		stbi_image_free(data);
-	}
-
-	return textureId;
-}
-
 int main()
 {
 	glfwInit();
@@ -129,14 +91,14 @@ int main()
 	Shader rockShader("rock.vs", "rock.fs");
 
 	Model planet(FileSystem::GetPath("resources/objects/planet/planet.obj"));
-	Model rock(FileSystem::GetPath("resources/objects/planet/rock.obj"));
+	Model rock(FileSystem::GetPath("resources/objects/rock/rock.obj"));
 
-	int amount = 10000;
+	int amount = 100000;
 	glm::mat4 *modelMatrices = new glm::mat4[amount];
 	srand(glfwGetTime());
 
-	float radius = 2.5f;
-	float offset = 0.5f;
+	float radius = 150.0f;
+	float offset = 25.0f;
 
 	for (int i = 0; i < amount; i++)
 	{
@@ -176,16 +138,17 @@ int main()
 		GLsizei vec4Size = sizeof(glm::vec4);
 
 		glEnableVertexAttribArray(3);
-		glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void *)0);
+		// vector4 has  4 not 3 floats!!!
+		glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void *)0);
 
 		glEnableVertexAttribArray(4);
-		glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void *)(vec4Size));
+		glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void *)(vec4Size));
 
 		glEnableVertexAttribArray(5);
-		glVertexAttribPointer(5, 3, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void *)(2 * vec4Size));
+		glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void *)(2 * vec4Size));
 
 		glEnableVertexAttribArray(6);
-		glVertexAttribPointer(6, 3, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void *)(3 * vec4Size));
+		glVertexAttribPointer(6, 4, GL_FLOAT, GL_FALSE, sizeof(glm::mat4), (void *)(3 * vec4Size));
 
 		glVertexAttribDivisor(3, 1);
 		glVertexAttribDivisor(4, 1);
@@ -203,7 +166,8 @@ int main()
 	//glFrontFace(GL_CCW);
 
 	//glDepthFunc(GL_ALWAYS); 
-
+	lastTime = glfwGetTime();
+	glfwSetCursorPos(window, lastX, lastY);
 	while (!glfwWindowShouldClose(window))
 	{
 		float currentTime = glfwGetTime();
@@ -212,11 +176,12 @@ int main()
 
 		processInput(window);
 
+		glEnable(GL_DEPTH_TEST);
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		glm::mat4 view = camera.GetViewMatrix();
-		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), 800.0f / 600.0f, 0.1f, 100.0f);
+		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), 800.0f / 600.0f, 0.1f, 1000.0f);
 
 		planetShader.use();
 		planetShader.setMat4("projection", projection);
@@ -229,20 +194,19 @@ int main()
 
 		planet.Draw(planetShader);
 
-		//rockShader.use();
-		//rockShader.setMat4("projection", projection);
-		//rockShader.setMat4("view", view);
-		//for (int i = 0; i < rock.meshes.size(); i++)
-		//{
-		//	glBindVertexArray(rock.meshes[i].VAO);
+		rockShader.use();
+		rockShader.setMat4("projection", projection);
+		rockShader.setMat4("view", view);
+		rockShader.setInt("material.texture_diffuse1", 0);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, rock.textureLoaded[0].Id);
+		for (int i = 0; i < rock.meshes.size(); i++)
+		{
+			glBindVertexArray(rock.meshes[i].VAO);
 
-		//	glDrawElementsInstanced(GL_TRIANGLES, rock.meshes[i].indices.size(), GL_UNSIGNED_INT, 0, amount);
-		//}
-		//shader.use();
-		//glBindVertexArray(vao);
-		//glDrawArraysInstanced(GL_TRIANGLES, 0, 6, 100);
-		//glDrawArrays(GL_POINTS, 0, 4);
-
+			glDrawElementsInstanced(GL_TRIANGLES, rock.meshes[i].indices.size(), GL_UNSIGNED_INT, 0, amount);
+			glBindVertexArray(0);
+		}
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
