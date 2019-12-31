@@ -93,7 +93,7 @@ int main()
 	Model planet(FileSystem::GetPath("resources/objects/planet/planet.obj"));
 	Model rock(FileSystem::GetPath("resources/objects/rock/rock.obj"));
 
-	int amount = 100000;
+	int amount = 1000;
 	glm::mat4 *modelMatrices = new glm::mat4[amount];
 	srand(glfwGetTime());
 
