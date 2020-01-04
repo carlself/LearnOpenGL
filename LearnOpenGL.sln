@@ -162,6 +162,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AntiAliasing_OffScreenMSAA"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AntiAliasing_CustomAA", "AdvancedOpenGL\AntiAliasing_CustomAA\AntiAliasing_CustomAA.vcxproj", "{7EE55A29-F8BF-4A65-B6D6-535B3A852330}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdvancedLighting", "AdvancedLighting", "{86A2C1EC-60AD-4430-86A7-9CC311B56DAF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlinnPhong", "AdvancedLighting\BlinnPhong\BlinnPhong.vcxproj", "{4DE07F08-7AA8-4367-B6ED-1249E6D05D90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -872,6 +876,16 @@ Global
 		{7EE55A29-F8BF-4A65-B6D6-535B3A852330}.Release|x64.Build.0 = Release|x64
 		{7EE55A29-F8BF-4A65-B6D6-535B3A852330}.Release|x86.ActiveCfg = Release|Win32
 		{7EE55A29-F8BF-4A65-B6D6-535B3A852330}.Release|x86.Build.0 = Release|Win32
+		{4DE07F08-7AA8-4367-B6ED-1249E6D05D90}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{4DE07F08-7AA8-4367-B6ED-1249E6D05D90}.Debug|x64.ActiveCfg = Debug|x64
+		{4DE07F08-7AA8-4367-B6ED-1249E6D05D90}.Debug|x64.Build.0 = Debug|x64
+		{4DE07F08-7AA8-4367-B6ED-1249E6D05D90}.Debug|x86.ActiveCfg = Debug|Win32
+		{4DE07F08-7AA8-4367-B6ED-1249E6D05D90}.Debug|x86.Build.0 = Debug|Win32
+		{4DE07F08-7AA8-4367-B6ED-1249E6D05D90}.Release|Any CPU.ActiveCfg = Release|Win32
+		{4DE07F08-7AA8-4367-B6ED-1249E6D05D90}.Release|x64.ActiveCfg = Release|x64
+		{4DE07F08-7AA8-4367-B6ED-1249E6D05D90}.Release|x64.Build.0 = Release|x64
+		{4DE07F08-7AA8-4367-B6ED-1249E6D05D90}.Release|x86.ActiveCfg = Release|Win32
+		{4DE07F08-7AA8-4367-B6ED-1249E6D05D90}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -946,6 +960,7 @@ Global
 		{A6EA0629-0977-4B7D-8C0D-D081062EAD0D} = {F4B3596C-F8BE-4E46-9850-E3F6DCE8433B}
 		{29F4A09D-B4E0-462B-A01F-16493B431018} = {F4B3596C-F8BE-4E46-9850-E3F6DCE8433B}
 		{7EE55A29-F8BF-4A65-B6D6-535B3A852330} = {F4B3596C-F8BE-4E46-9850-E3F6DCE8433B}
+		{4DE07F08-7AA8-4367-B6ED-1249E6D05D90} = {86A2C1EC-60AD-4430-86A7-9CC311B56DAF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1DC0FCF7-08A7-4D46-AD70-63B216B3DAF3}
