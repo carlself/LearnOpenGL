@@ -170,6 +170,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShadowMap_DepthMap", "Advan
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShadowMapping", "AdvancedLighting\ShadowMapping\ShadowMapping.vcxproj", "{13E71D01-452C-4433-BE71-EA51A0401756}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShadowMapping_Improved", "AdvancedLighting\ShadowMapping_Improved\ShadowMapping_Improved.vcxproj", "{F426883C-D480-4E54-9E9C-3DA434551162}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -910,6 +912,16 @@ Global
 		{13E71D01-452C-4433-BE71-EA51A0401756}.Release|x64.Build.0 = Release|x64
 		{13E71D01-452C-4433-BE71-EA51A0401756}.Release|x86.ActiveCfg = Release|Win32
 		{13E71D01-452C-4433-BE71-EA51A0401756}.Release|x86.Build.0 = Release|Win32
+		{F426883C-D480-4E54-9E9C-3DA434551162}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{F426883C-D480-4E54-9E9C-3DA434551162}.Debug|x64.ActiveCfg = Debug|x64
+		{F426883C-D480-4E54-9E9C-3DA434551162}.Debug|x64.Build.0 = Debug|x64
+		{F426883C-D480-4E54-9E9C-3DA434551162}.Debug|x86.ActiveCfg = Debug|Win32
+		{F426883C-D480-4E54-9E9C-3DA434551162}.Debug|x86.Build.0 = Debug|Win32
+		{F426883C-D480-4E54-9E9C-3DA434551162}.Release|Any CPU.ActiveCfg = Release|Win32
+		{F426883C-D480-4E54-9E9C-3DA434551162}.Release|x64.ActiveCfg = Release|x64
+		{F426883C-D480-4E54-9E9C-3DA434551162}.Release|x64.Build.0 = Release|x64
+		{F426883C-D480-4E54-9E9C-3DA434551162}.Release|x86.ActiveCfg = Release|Win32
+		{F426883C-D480-4E54-9E9C-3DA434551162}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -987,6 +999,7 @@ Global
 		{4DE07F08-7AA8-4367-B6ED-1249E6D05D90} = {86A2C1EC-60AD-4430-86A7-9CC311B56DAF}
 		{6C11E59E-D707-4359-850E-46E0C665EF83} = {86A2C1EC-60AD-4430-86A7-9CC311B56DAF}
 		{13E71D01-452C-4433-BE71-EA51A0401756} = {86A2C1EC-60AD-4430-86A7-9CC311B56DAF}
+		{F426883C-D480-4E54-9E9C-3DA434551162} = {86A2C1EC-60AD-4430-86A7-9CC311B56DAF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1DC0FCF7-08A7-4D46-AD70-63B216B3DAF3}
