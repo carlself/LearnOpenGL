@@ -125,7 +125,7 @@ int main()
 	glReadBuffer(GL_NONE);
 	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 
-	shadowMappingShader.setInt("depthMap", depthMap);
+	//shadowMappingShader.setInt("depthMap", depthMap);
 
 	lastTime = glfwGetTime();
 	glfwSetCursorPos(window, lastX, lastY);

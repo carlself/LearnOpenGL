@@ -17,7 +17,7 @@ uniform vec3 viewPos;
 
 float ShadowCalculation(vec4 fragPosLightSpace, vec3 normal, vec3 lightDir)
 {
-    vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w; // [-1,1]
+    vec3 projCoords = fs_in.FragPosLightSpace.xyz / fs_in.FragPosLightSpace.w; // [-1,1]
     projCoords = projCoords * 0.5 + 0.5; // [0,1]
     float shadow = 0.0;
     vec2 texelSize = 1.0 / textureSize(shadowMap, 0);
@@ -64,7 +64,7 @@ void main()
     float spec = pow(max(dot(halfDir, normal), 0.0), 64.0);
     vec3 specular = spec * lightColor;
 
-    float shadow = ShadowCalculation(fs_in.FragPosLightSpace, normal, lightDir);
+    float shadow = ShadowCalculation(normal, lightDir);
     vec3 lighting = (ambient + (1.0 - shadow) * (diffuse + specular)) * color;
 
     FragColor = vec4(lighting, 1.0);
