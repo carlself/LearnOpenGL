@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.106
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Common", "Common\Common.vcxproj", "{40133DE4-0CDB-4D57-91E3-8E5D5F5CE603}"
 EndProject
@@ -173,6 +173,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShadowMapping_Improved", "AdvancedLighting\ShadowMapping_Improved\ShadowMapping_Improved.vcxproj", "{F426883C-D480-4E54-9E9C-3DA434551162}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PointShadow", "AdvancedLighting\PointShadow\PointShadow.vcxproj", "{D76241C9-15A5-4229-8301-9D17460C27A1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NormalMapping", "AdvancedLighting\NormalMapping\NormalMapping.vcxproj", "{12BAB9B3-FC8C-460E-BED3-D7CA0F6765BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -934,6 +936,16 @@ Global
 		{D76241C9-15A5-4229-8301-9D17460C27A1}.Release|x64.Build.0 = Release|x64
 		{D76241C9-15A5-4229-8301-9D17460C27A1}.Release|x86.ActiveCfg = Release|Win32
 		{D76241C9-15A5-4229-8301-9D17460C27A1}.Release|x86.Build.0 = Release|Win32
+		{12BAB9B3-FC8C-460E-BED3-D7CA0F6765BA}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{12BAB9B3-FC8C-460E-BED3-D7CA0F6765BA}.Debug|x64.ActiveCfg = Debug|x64
+		{12BAB9B3-FC8C-460E-BED3-D7CA0F6765BA}.Debug|x64.Build.0 = Debug|x64
+		{12BAB9B3-FC8C-460E-BED3-D7CA0F6765BA}.Debug|x86.ActiveCfg = Debug|Win32
+		{12BAB9B3-FC8C-460E-BED3-D7CA0F6765BA}.Debug|x86.Build.0 = Debug|Win32
+		{12BAB9B3-FC8C-460E-BED3-D7CA0F6765BA}.Release|Any CPU.ActiveCfg = Release|Win32
+		{12BAB9B3-FC8C-460E-BED3-D7CA0F6765BA}.Release|x64.ActiveCfg = Release|x64
+		{12BAB9B3-FC8C-460E-BED3-D7CA0F6765BA}.Release|x64.Build.0 = Release|x64
+		{12BAB9B3-FC8C-460E-BED3-D7CA0F6765BA}.Release|x86.ActiveCfg = Release|Win32
+		{12BAB9B3-FC8C-460E-BED3-D7CA0F6765BA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1013,6 +1025,7 @@ Global
 		{13E71D01-452C-4433-BE71-EA51A0401756} = {86A2C1EC-60AD-4430-86A7-9CC311B56DAF}
 		{F426883C-D480-4E54-9E9C-3DA434551162} = {86A2C1EC-60AD-4430-86A7-9CC311B56DAF}
 		{D76241C9-15A5-4229-8301-9D17460C27A1} = {86A2C1EC-60AD-4430-86A7-9CC311B56DAF}
+		{12BAB9B3-FC8C-460E-BED3-D7CA0F6765BA} = {86A2C1EC-60AD-4430-86A7-9CC311B56DAF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1DC0FCF7-08A7-4D46-AD70-63B216B3DAF3}
