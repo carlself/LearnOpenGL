@@ -19,14 +19,15 @@ float lastX = 400.0f;
 float lastY = 300.0f;
 const unsigned int SCR_WIDTH = 1280;
 const unsigned int SCR_HEIGHT = 720;
+float heightScale = 0.1f;
 
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
 
-void renderScene(Shader &);
+void renderScene(Shader&);
 void renderPlane();
 void renderQuad();
 void renderCube();
-unsigned int loadTexture(char const *path);
+unsigned int loadTexture(char const* path);
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -34,7 +35,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 }
 
 
-void processInput(GLFWwindow *window)
+void processInput(GLFWwindow* window)
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
@@ -47,9 +48,28 @@ void processInput(GLFWwindow *window)
 		camera.ProcessKeyboard(LEFT, deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		camera.ProcessKeyboard(RIGHT, deltaTime);
+
+	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+	{
+		if (heightScale > 0.0f)
+			heightScale -= 0.0005f;
+		else
+			heightScale = 0.0f;
+
+		std::cout << heightScale << std::endl;
+	}
+	else if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+	{
+		if (heightScale < 1.0f)
+			heightScale += 0.0005f;
+		else
+			heightScale = 1.0f;
+	
+		std::cout << heightScale << std::endl;
+	}
 }
 
-void mouse_callback(GLFWwindow *window, double xpos, double ypos)
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
 	float xoffset = xpos - lastX;
 	float yoffset = lastY - ypos;
@@ -63,7 +83,7 @@ void mouse_callback(GLFWwindow *window, double xpos, double ypos)
 	camera.ProcessMouseMovement(xoffset, yoffset);
 }
 
-void scroll_callback(GLFWwindow *window, double xoffset, double yoffset)
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
 	camera.ProcessMouseScroll(yoffset);
 }
@@ -98,20 +118,25 @@ int main()
 
 	glEnable(GL_DEPTH_TEST);
 
-	unsigned int brikTexture = loadTexture(FileSystem::GetPath("resources/textures/brickwall.jpg").c_str());
-	unsigned int normalTexture = loadTexture(FileSystem::GetPath("resources/textures/brickwall_normal.jpg").c_str());
+	//unsigned int diffuseTexture = loadTexture(FileSystem::GetPath("resources/textures/bricks2.jpg").c_str());
+	//unsigned int normalTexture = loadTexture(FileSystem::GetPath("resources/textures/bricks2_normal.jpg").c_str());
+	//unsigned int depthTexture = loadTexture(FileSystem::GetPath("resources/textures/bricks2_disp.jpg").c_str());
+	unsigned int diffuseTexture = loadTexture(FileSystem::GetPath("resources/textures/toy_box_diffuse.png").c_str());
+	unsigned int normalTexture = loadTexture(FileSystem::GetPath("resources/textures/toy_box_normal.png").c_str());
+	unsigned int depthTexture = loadTexture(FileSystem::GetPath("resources/textures/toy_box_disp.png").c_str());
 
-	Shader shader("normal_mapping.vs", "normal_mapping.fs");
+	Shader shader("parallex_mapping.vs", "parallex_mapping.fs");
+
 	shader.use();
 	shader.setInt("diffuseMap", 0);
 	shader.setInt("normalMap", 1);
-	
+	shader.setInt("depthMap", 2);
 
 	lastTime = glfwGetTime();
 	glfwSetCursorPos(window, lastX, lastY);
 
-	glm::vec3 lightPos(0.5f, 0.5f, 1.3f);
-
+	//glm::vec3 lightPos(0.5f, 0.5f, 1.3f);
+	glm::vec3 lightPos(0.5f, 1.0f, 0.3f);
 	while (!glfwWindowShouldClose(window))
 	{
 		float currentTime = glfwGetTime();
@@ -130,24 +155,27 @@ int main()
 		shader.setMat4("projection", cameraProjection);
 
 		glm::mat4 model = glm::mat4(1.0f);
-		model = glm::rotate(model, glm::radians(currentTime * -10.0f), glm::normalize(glm::vec3(1.0f, 0.0f, 1.0f)));
+		//model = glm::rotate(model, -10.0f, glm::normalize(glm::vec3(1.0f, 0.0f, 1.0f)));
 		shader.setMat4("model", model);
 		shader.setVec3("viewPos", camera.Position);
 		shader.setVec3("lightPos", lightPos);
+		shader.setFloat("height_scale", heightScale);
 
 		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, brikTexture);
+		glBindTexture(GL_TEXTURE_2D, diffuseTexture);
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, normalTexture);
+		glActiveTexture(GL_TEXTURE2);
+		glBindTexture(GL_TEXTURE_2D, depthTexture);
 
 		renderQuad();
 
 		// render light source
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, lightPos);
-		model = glm::scale(model, glm::vec3(0.1f));
-		shader.setMat4("model", model);
-		renderQuad();
+		//model = glm::mat4(1.0f);
+		//model = glm::translate(model, lightPos);
+		//model = glm::scale(model, glm::vec3(0.1f));
+		//shader.setMat4("model", model);
+		//renderQuad();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -238,7 +266,7 @@ void renderQuad()
 
 		glBindVertexArray(quadVAO);
 		glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*)0);
@@ -257,13 +285,13 @@ void renderQuad()
 	glBindVertexArray(0);
 }
 
-unsigned int loadTexture(char const *path)
+unsigned int loadTexture(char const* path)
 {
 	unsigned int textureID;
 	glGenTextures(1, &textureID);
 
 	int width, height, nrComponents;
-	unsigned char *data = stbi_load(path, &width, &height, &nrComponents, 0);
+	unsigned char* data = stbi_load(path, &width, &height, &nrComponents, 0);
 	if (data)
 	{
 		GLenum format;
