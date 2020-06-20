@@ -118,12 +118,12 @@ int main()
 
 	glEnable(GL_DEPTH_TEST);
 
-	//unsigned int diffuseTexture = loadTexture(FileSystem::GetPath("resources/textures/bricks2.jpg").c_str());
-	//unsigned int normalTexture = loadTexture(FileSystem::GetPath("resources/textures/bricks2_normal.jpg").c_str());
-	//unsigned int depthTexture = loadTexture(FileSystem::GetPath("resources/textures/bricks2_disp.jpg").c_str());
-	unsigned int diffuseTexture = loadTexture(FileSystem::GetPath("resources/textures/toy_box_diffuse.png").c_str());
-	unsigned int normalTexture = loadTexture(FileSystem::GetPath("resources/textures/toy_box_normal.png").c_str());
-	unsigned int depthTexture = loadTexture(FileSystem::GetPath("resources/textures/toy_box_disp.png").c_str());
+	unsigned int diffuseTexture = loadTexture(FileSystem::GetPath("resources/textures/bricks2.jpg").c_str());
+	unsigned int normalTexture = loadTexture(FileSystem::GetPath("resources/textures/bricks2_normal.jpg").c_str());
+	unsigned int depthTexture = loadTexture(FileSystem::GetPath("resources/textures/bricks2_disp.jpg").c_str());
+	//unsigned int diffuseTexture = loadTexture(FileSystem::GetPath("resources/textures/toy_box_diffuse.png").c_str());
+	//unsigned int normalTexture = loadTexture(FileSystem::GetPath("resources/textures/toy_box_normal.png").c_str());
+	//unsigned int depthTexture = loadTexture(FileSystem::GetPath("resources/textures/toy_box_disp.png").c_str());
 
 	Shader shader("parallex_mapping.vs", "parallex_mapping.fs");
 
@@ -159,7 +159,7 @@ int main()
 		shader.setMat4("model", model);
 		shader.setVec3("viewPos", camera.Position);
 		shader.setVec3("lightPos", lightPos);
-		shader.setFloat("height_scale", heightScale);
+		shader.setFloat("heightScale", heightScale);
 
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, diffuseTexture);
@@ -306,8 +306,8 @@ unsigned int loadTexture(char const* path)
 		glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, format == GL_RGBA ? GL_CLAMP_TO_EDGE : GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, format == GL_RGBA ? GL_CLAMP_TO_EDGE : GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
